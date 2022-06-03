@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/TestPlatform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Game.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Skeleton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Healthbar.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5692, 21.5 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 478, 51 )
+collision_layer = 2
+collision_mask = 5
+speed = 1800
+jump_speed = -700
+roll_speed = 1600
+gravity = 3000
+
+[node name="StaticBody2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 490, 464 )
+scale = Vector2( 6, 1 )
+collision_mask = 0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 647, 1315.5 )
+shape = SubResource( 1 )
+
+[node name="Actors" type="Node" parent="."]
+
+[node name="Skeleton" parent="Actors" instance=ExtResource( 4 )]
+position = Vector2( 726, 109 )
+speed = 600
+jump_speed = 200
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource( 5 )]
+margin_right = 292.0
+rect_scale = Vector2( 0.35, 0.35 )
+
+[node name="PlayerSpawnOrigin" type="Position2D" parent="."]
+position = Vector2( 475, -162 )
+
+[node name="SkeletonPieces" type="Node" parent="."]
+
+[connection signal="playerDied" from="Player" to="." method="_on_Player_playerDied"]
+[connection signal="playerHealthUpdate" from="Player" to="." method="_on_Player_playerHealthUpdate"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
