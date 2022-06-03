@@ -42,11 +42,16 @@ func _ready():
 	for actor in $Actors.get_children():
 		actor.init($Player)
 
+# When a skeleton dies, shoot out pieces at random directions
 func _on_skeleton_death(pos: Vector2) -> void:
 	for i in range(0,6):
 		var skeleton_piece_instance = skeleton_piece.instance()
-		$SkeletonPieces.add_child(skeleton_piece_instance)
+		# Use call_deffered to avoid lag spike
+		call_deferred("add_child_to_skeleton_pieces", skeleton_piece_instance)
 		skeleton_piece_instance.init(i, pos, _random_velocity())
+
+func add_child_to_skeleton_pieces(piece: Node) -> void:
+	$SkeletonPieces.add_child(piece)
 
 func _random_velocity() -> Vector2:
 	return Vector2(SKELETON_PIECE_SPEED,0).rotated((randf() * PI) + PI)

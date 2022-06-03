@@ -182,7 +182,7 @@ func take_damage(amount: int) -> void:
 func gain_health(amount: int) -> void:
 	health += amount
 	if health > max_health:
-		health + max_health
+		health += max_health
 	if DEBUG: print("Player gained ", amount, " health. Health now ", health)
 	emit_signal("playerHealthUpdate", health)
 

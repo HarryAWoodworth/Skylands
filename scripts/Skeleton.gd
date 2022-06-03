@@ -275,11 +275,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"attack":
 			setState(IDLE, true)
 
-func _on_Attackrange_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+func _on_Attackrange_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body.name == "Player":
 		playerInAttackRange = true
 
-func _on_Attackrange_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
+func _on_Attackrange_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body.name == "Player":
 		playerInAttackRange = false
 
