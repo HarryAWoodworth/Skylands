@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/Healthbar.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Heart.tscn" type="PackedScene" id=2]
+
+[node name="Healthbar" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -896.0
+margin_bottom = -472.0
+rect_min_size = Vector2( 0, 128 )
+custom_constants/separation = -38
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heart3" parent="." instance=ExtResource( 2 )]
+margin_right = 128.0
+margin_bottom = 128.0
+
+[node name="Heart" parent="." instance=ExtResource( 2 )]
+margin_left = 90.0
+margin_right = 218.0
+margin_bottom = 128.0
+
+[node name="Heart2" parent="." instance=ExtResource( 2 )]
+margin_left = 180.0
+margin_right = 308.0
+margin_bottom = 128.0
+
+[node name="Heart4" parent="." instance=ExtResource( 2 )]
+margin_left = 270.0
+margin_right = 398.0
+margin_bottom = 128.0
+
+[node name="Heart5" parent="." instance=ExtResource( 2 )]
+margin_left = 360.0
+margin_right = 488.0
+margin_bottom = 128.0
+
+[node name="Heart6" parent="." instance=ExtResource( 2 )]
+margin_left = 450.0
+margin_right = 578.0
+margin_bottom = 128.0
+
+[node name="Heart7" parent="." instance=ExtResource( 2 )]
+margin_left = 540.0
+margin_right = 668.0
+margin_bottom = 128.0
+
+[node name="Heart8" parent="." instance=ExtResource( 2 )]
+margin_left = 630.0
+margin_right = 758.0
+margin_bottom = 128.0
+
+[node name="Heart9" parent="." instance=ExtResource( 2 )]
+margin_left = 720.0
+margin_right = 848.0
+margin_bottom = 128.0
+
+[node name="Heart10" parent="." instance=ExtResource( 2 )]
+margin_left = 810.0
+margin_right = 938.0
+margin_bottom = 128.0
