@@ -2,6 +2,8 @@ extends Node2D
 
 # BASE
 # [ ] Skeleton Death Shatter
+#	[ ] Use Physics material for bounce and friction
+# [ ] Roll goes through enemies
 
 # GENERATION
 # [ ] Gen islands

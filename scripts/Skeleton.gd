@@ -15,7 +15,7 @@ const DEBUG := false
 # Threshold for jumping due to skeleton height offset
 const HEIGHT_THRESHOLD := 5
 # Only run towards the player if they are at least this distance
-const RUN_THRESHOLD := 25
+const RUN_THRESHOLD := 50
 
 var velocity := Vector2.ZERO
 var followingPlayer := false
@@ -246,21 +246,11 @@ func _flip() -> void:
 	$DamageArea/CollisionShape2D.position.x *= -1
 
 func _raycastToPlayer():
-	hit_pos = []
 	var space_state = get_world_2d().direct_space_state
-	var target_extents = player.collisionShape.shape.extents - Vector2(5, 5)
-	var nw = player.position - target_extents
-	var se = player.position + target_extents
-	var ne = player.position + Vector2(target_extents.x, -target_extents.y)
-	var sw = player.position + Vector2(-target_extents.x, target_extents.y)
-	for pos in [nw, ne, se, sw]:
-		var result = space_state.intersect_ray(position, pos, [self], collision_mask)
-		if result:
-			hit_pos.append(result.position)
-			if result.collider.name == "Player":
-				followingPlayer = true
-			if !DEBUG:
-				break
+	var result = space_state.intersect_ray(position, player.position, [self], collision_mask)
+	if result:
+		if result.collider.name == "Player":
+			followingPlayer = true
 
 func _on_Jumprange_body_entered(body):
 	if body.name == "Player" and playerClose == false:
