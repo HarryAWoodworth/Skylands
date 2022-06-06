@@ -10,13 +10,14 @@ export var gravity: int = 4000
 export var friction: int = 80
 export (float, 0, 1.0) var acceleration = 0.25
 
-const DEBUG: bool = true
+const DEBUG: bool = false
 
 const SPEED_THRESHOLD := 1000
 const HEIGHT_THRESHOLD := 5
 const COLLISION_DAMP := 1
 const MAX_BOUNCE_LENGTH := 1000
-const push_factor := 0.5
+const push_factor := 1.0
+const MAX_PUSH_STRENGTH := 1000
 # Higher value, more velocity is dampened
 const VELOCITY_BOUNCE_X_DAMPEN := 1.5
 const VELOCITY_BOUNCE_Y_DAMPEN := 2
@@ -59,13 +60,14 @@ func _physics_process(delta):
 	# If not dead, apply velocity from input with gravity
 	if !dead:
 		velocity.y += gravity * delta
-		velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.785398, false)
+		velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.785398, true)
 		# Apply impulse to rigidbodies
 		for index in get_slide_count():
 			var collision = get_slide_collision(index)
-			if collision.collider.is_in_group("bodies"):
-				print("Hehe")
-				collision.collider.apply_central_impulse(-collision.normal * velocity.length() * push_factor)
+			if collision.collider is RigidBody2D:
+				var vel_len = clamp(velocity.length(), 1, MAX_PUSH_STRENGTH)
+				print("Vel_len: ", vel_len)
+				collision.collider.apply_central_impulse(-collision.normal * vel_len)
 		
 	# If dead, bounce
 	else:

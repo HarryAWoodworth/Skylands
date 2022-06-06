@@ -26,6 +26,18 @@ position = Vector2( 490, 464 )
 scale = Vector2( 6, 1 )
 collision_mask = 0
 
+[node name="StaticBody2D2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 79, 152 )
+rotation = -1.56427
+scale = Vector2( 6, 1 )
+collision_mask = 0
+
+[node name="StaticBody2D3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 905, 154 )
+rotation = -1.56427
+scale = Vector2( 6, 1 )
+collision_mask = 0
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 21
 
@@ -37,6 +49,16 @@ shape = SubResource( 1 )
 
 [node name="Skeleton" parent="Actors" instance=ExtResource( 4 )]
 position = Vector2( 726, 109 )
+speed = 600
+jump_speed = 200
+
+[node name="Skeleton2" parent="Actors" instance=ExtResource( 4 )]
+position = Vector2( 562, 147 )
+speed = 600
+jump_speed = 200
+
+[node name="Skeleton3" parent="Actors" instance=ExtResource( 4 )]
+position = Vector2( 262, 121 )
 speed = 600
 jump_speed = 200
 
