@@ -60,7 +60,7 @@ func _physics_process(delta):
 	# If not dead, apply velocity from input with gravity
 	if !dead:
 		velocity.y += gravity * delta
-		velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.785398, false)
+		velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.785398, true)
 		# Apply impulse to rigidbody bits in scene
 		for index in get_slide_count():
 			var collision = get_slide_collision(index)
