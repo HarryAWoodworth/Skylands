@@ -60,7 +60,7 @@ func _physics_process(delta):
 	if !dead:
 		velocity.y += gravity * delta
 		velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.785398, false)
-		# Apply impulse to rigidbodies
+		# Apply impulse to rigidbody bits in scene
 		for index in get_slide_count():
 			var collision = get_slide_collision(index)
 			if collision.collider.is_in_group("bodies"):
